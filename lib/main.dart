@@ -5,9 +5,11 @@ import '../providers/great_places.dart';
 import '../screens/places_list_screen.dart';
 import '../screens/add_place_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class MyApp extends StatelessWidget {
               .copyWith(secondary: Colors.amber),
           // primarySwatch: Colors.indigo,
         ),
-        home: PlacesListScreen(),
+        home: const PlacesListScreen(),
         routes: {
-          AddPlaceScreen.routeName: (ctx) => AddPlaceScreen(),
+          AddPlaceScreen.routeName: (ctx) => const AddPlaceScreen(),
         },
       ),
     );
