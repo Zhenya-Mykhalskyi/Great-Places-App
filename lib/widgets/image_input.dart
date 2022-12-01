@@ -29,12 +29,15 @@ class _ImageInputState extends State<ImageInput> {
     setState(() {
       _storedImage = File(imageFile.path);
     });
-    final appDir = await syspaths
-        .getApplicationDocumentsDirectory(); //доступ до папки на пристрої
+    final appDir = await syspaths.getApplicationDocumentsDirectory();
+    //доступ до спціальної папки на пристрої (getExternalStorageDirectory - для карти пам'яті на Android)
     final fileName = path.basename(imageFile.path);
+    //шлях до місця(тимчасовий каталог), де зберігається imageFile. ТОчніше частина шляху, після останнього '/'
     final savedImage =
         await File(imageFile.path).copy('${appDir.path}/$fileName');
+    //збережене в спеціальну папку для файлів Flutter зображення
     widget.onSelectImage(savedImage);
+    //передаєм фото з каммери файлу AddPlaceScreen
   }
 
   @override
