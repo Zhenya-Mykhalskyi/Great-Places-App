@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
+import '../helpers/location_helper.dart';
+
 class LocationInput extends StatefulWidget {
   @override
   State<LocationInput> createState() => _LocationInputState();
@@ -11,8 +13,13 @@ class _LocationInputState extends State<LocationInput> {
 
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
-    print(locData.latitude);
-    print(locData.longitude);
+    final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
+      latitude: locData.latitude,
+      longitude: locData.longitude,
+    );
+    setState(() {
+      _previewImageUrl = staticMapImageUrl;
+    });
   }
 
   @override
@@ -26,9 +33,11 @@ class _LocationInputState extends State<LocationInput> {
           height: 170,
           width: double.infinity,
           child: _previewImageUrl == null
-              ? const Text(
-                  'No Location Chosen.',
-                  textAlign: TextAlign.center,
+              ? const Center(
+                  child: Text(
+                    'No Location Chosen.',
+                    textAlign: TextAlign.center,
+                  ),
                 )
               : Image.network(
                   _previewImageUrl,
