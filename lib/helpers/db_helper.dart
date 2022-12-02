@@ -8,7 +8,7 @@ class DBHelper {
         //створює бд по визначеному шляху із закінченням places.db
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT)');
+          'CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT, loc_lat REAL, loc_lng REAL, address TEXT )'); //REAL - Double fot SQL
     }, version: 1);
     //if it doesn`t find database, it will create
   }
