@@ -54,11 +54,19 @@ class _MapScreenState extends State<MapScreen> {
           zoom: 16,
         ),
         onTap: widget.isSelecting ? _selectLocation : null,
-        markers: _pickedLocation == null
+        markers: (_pickedLocation == null && widget.isSelecting)
+            // якщо точка не стоїть і якщо ми не в процесі вибору (isSelecting по замовчуванню false і ми ставимо його в true, коли виконується функція вибору точки).
             ? {}
             : {
                 Marker(
-                    markerId: const MarkerId('m1'), position: _pickedLocation),
+                  markerId: const MarkerId('m1'),
+                  position: _pickedLocation ?? // ==null
+                      LatLng(
+                        widget.initialLocation.latitude,
+                        widget.initialLocation.longitude,
+                      ),
+                  // _pickedLocation ==null тому, що ми його тут не вибираємо
+                ),
               },
         // {} - це set(набір), відрізняється від списку тим, що у ньому можуть міститися тільки унікальні значення. Не має ключів, а тільки унікальні значення. Повторні значення не добавляються
       ),
