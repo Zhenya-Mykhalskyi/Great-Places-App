@@ -1,9 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.great_places_app">
+    package="com.vortex.great_places_app">
    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/> 
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="great_places_app"
+        android:label="Great Places"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
          <meta-data android:name="com.google.android.geo.API_KEY"
